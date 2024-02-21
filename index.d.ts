@@ -1,0 +1,1 @@
+export const OverloadPlugin: import('esbuild').Plugin;

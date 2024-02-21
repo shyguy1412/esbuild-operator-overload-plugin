@@ -1,0 +1,26 @@
+{
+  "name": "esbuild-operator-overload-plugin",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shyguy1412/esbuild-operator-overload-plugin.git"
+  },
+  "author": "Shyguy1412",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shyguy1412/esbuild-operator-overload-plugin/issues"
+  },
+  "homepage": "https://github.com/shyguy1412/esbuild-operator-overload-plugin#readme",
+  "dependencies": {
+    "acorn": "^8.11.3",
+    "acorn-walk": "^8.3.2",
+    "astring": "^1.8.6",
+    "esbuild": "^0.20.1"
+  }
+}
