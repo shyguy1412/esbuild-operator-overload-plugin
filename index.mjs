@@ -87,10 +87,10 @@ export const OverloadPlugin = {
               if (!Object.getOwnPropertyDescriptor(__updateop, 'temp')) {
                 Object.defineProperty(__updateop, 'temp', {
                   set(v) { __updateop.__temp = v; },
-                  get() { var _ = __updateop.__temp; delete __updateop.__temp; return _; }
+                  get() { var _ = __updateop.__temp; __updateop.__temp = undefined; return _; }
                 });
               }
-              
+
               if (v != null && v[Symbol.for(op)]) return v[Symbol.for(op)](v, prefix);
 
               switch (op) {
