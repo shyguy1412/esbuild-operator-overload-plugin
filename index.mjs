@@ -84,6 +84,13 @@ export const OverloadPlugin = {
               throw new SyntaxError('Invalid unary operator: ' + op);
             },
             function __updateop(v, op, prefix) {
+              if (!Object.getOwnPropertyDescriptor(__updateop, 'temp')) {
+                Object.defineProperty(__updateop, 'temp', {
+                  set(v) { __updateop.__temp = v; },
+                  get() { var _ = __updateop.__temp; delete __updateop.__temp; return _; }
+                });
+              }
+              
               if (v != null && v[Symbol.for(op)]) return v[Symbol.for(op)](v, prefix);
 
               switch (op) {
@@ -218,10 +225,20 @@ export const OverloadPlugin = {
             },
             {
               type: 'Identifier',
-              name: node.argument.name
+              name: node.prefix ? node.argument.name : '__updateop.temp'
             }
           ];
+          if (!node.prefix) node.expressions.unshift({
+            type: 'AssignmentExpression',
+            operator: '=',
+            left: {
+              type: 'Identifier',
+              name: '__updateop.temp'
+            },
+            right: node.argument
+          });
           node.type = 'SequenceExpression';
+
         }
       });
 
